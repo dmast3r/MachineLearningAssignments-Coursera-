@@ -1,0 +1,1 @@
+This repository contains solution to Coursera's Machine Learning Course Assignments. Please use these solutions only for help when you are stuck. I do not encourage copying of assignments.
