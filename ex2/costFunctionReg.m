@@ -1,15 +1,7 @@
 function [J, grad] = costFunctionReg(theta, X, y, lambda)
 	m = length(y); 
-	h = X * theta;
-	len = length(h);
-	len_theta = length(theta);
-	for i = 1 : len
-		h(i) = 1 / (1 + e^(-h(i)));
-	endfor
-	J = -sum(y .* log(h) + (1 - y) .* log(1 - h)) / m;
-	for i = 2 : len_theta
-		J = J + (lambda * theta(i) .^ 2) / (2 * m);
-	endfor 
+	h = 1 ./ (1  + e .^ (-(X * theta)));
+	J = -sum(y .* log(h) + (1 - y) .* log(1 - h)) / m + lambda * sum(theta(2 : length(theta)) .^ 2) / (2 * m);
 	grad = zeros(size(theta));
 	dif = h - y;
 	grad(1) = sum(dif .* X(:, 1)) / m;
